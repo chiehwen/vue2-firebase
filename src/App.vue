@@ -69,6 +69,7 @@
 
 <script>
 import Firebase from 'firebase'
+import toastr from 'toastr'
 
 let config = {
   apiKey: "AIzaSyDlSnNZfs2ufgIv_PRImclFfki3jtMnUJo",
@@ -102,13 +103,15 @@ export default {
     addFilm: function() {
       console.log(this.newFilm);
       filmsRef.push(this.newFilm);
+      toastr.success("Add successful")
       this.newFilm.name = '';
       this.newFilm.director = '';
       this.newFilm.url = '';
     },
     removeFilm: function(film) {
       console.log();
-      filmsRef.child(film['.key']).remove()
+      filmsRef.child(film['.key']).remove();
+      toastr.warning("Film removed")
     }
   }
 }
